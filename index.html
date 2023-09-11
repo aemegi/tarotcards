@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="Andrea Crofoot">
+        <title>Tarot Card Search</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+            <!-- jQuery first, then Popper.js-->
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+       <style>        
+        html {
+            /*For smooth scrolling behavior*/
+            scroll-behavior: smooth;
+        }
+        
+        h1,
+        h2 {
+            padding-top: 150px;
+        }
+
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+            }
+        }
+
+        .b-example-divider {
+            height: 3rem;
+            background-color: rgba(0, 0, 0, .1);
+            border: solid rgba(0, 0, 0, .15);
+            border-width: 1px 0;
+            box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+        }
+
+        .b-example-vr {
+            flex-shrink: 0;
+            width: 1.5rem;
+            height: 100vh;
+        }
+
+        .bi {
+            vertical-align: -.125em;
+            fill: currentColor;
+        }
+
+        .nav-scroller {
+            position: relative;
+            z-index: 2;
+            height: 2.75rem;
+            overflow-y: hidden;
+        }
+
+        .nav-scroller .nav {
+            display: flex;
+            flex-wrap: nowrap;
+            padding-bottom: 1rem;
+            margin-top: -1px;
+            overflow-x: auto;
+            text-align: center;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+        /*the following is for the search feature*/
+        .is-hidden { display: none; }
+
+        .cards {
+          padding: 0 20px;
+        }
+        </style>
+        
+        <script>
+        //search code
+            function liveSearch() {
+                // Locate the card elements
+                let cards = document.querySelectorAll('.cards')
+                // Locate the search input
+                let search_query = document.getElementById("searchbox").value;
+                // Loop through the cards
+                for (var i = 0; i < cards.length; i++) {
+                    // If the text is within the card...
+                    if(cards[i].innerText.toLowerCase()
+                    // ...and the text matches the search query...
+                    .includes(search_query.toLowerCase())) {
+                        // ...remove the `.is-hidden` class.
+                        cards[i].classList.remove("is-hidden");
+                    } else {
+                    // Otherwise, add the class.
+                    cards[i].classList.add("is-hidden");
+                    }
+                }
+            // A little delay
+            let typingTimer;        
+            let typeInterval = 500; // Half a second
+            let searchInput = document.getElementById('searchbox');
+
+            searchInput.addEventListener('keyup', () => {
+            clearTimeout(typingTimer);
+            typingTimer = setTimeout(liveSearch, typeInterval);
+            });
+            }
+
+        
+        </script>
+        
+        <!-- Custom styles for this template -->
+        <link href="assets/css/navbar.css" rel="stylesheet">    
+</head>
+
+<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50">
+    <!--div for link to top of page-->
+    <div id="top"></div>
+
+
+    <!--***************************************************************************************-->
+    <!--******************************** BEGIN NAVIGATION *************************************-->
+    <!--***************************************************************************************-->
+        <nav id="navigation" class="navbar navbar-expand-md navbar-light bg-light fixed-top navbar-default" aria-label="Fourth navbar example">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#top">The Pictorial Key to the Tarot</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+        
+              <div class="collapse navbar-collapse" id="navbarsExample04">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Major Arcana</a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#fool">0. The Fool.</a></li>
+                      <li><a class="dropdown-item" href="#magician">I. The Magician</a></li>
+                      <li><a class="dropdown-item" href="#highpriestess">II. The High Priestess</a></li>
+                      <li><a class="dropdown-item" href="#empress">III. The Empress</a></li>
+                      <li><a class="dropdown-item" href="#emporer">IV. The Emporer</a></li>
+                      <li><a class="dropdown-item" href="#hierophant">V. The Hierophant</a></li>
+                      <li><a class="dropdown-item" href="#lovers">VI. The Lovers</a></li>
+                      <li><a class="dropdown-item" href="#chariot">VII. The Chariot</a></li>
+                      <li><a class="dropdown-item" href="#strength">VIII. Strength</a></li>
+                      <li><a class="dropdown-item" href="#hermit">IX. The Hermit</a></li>
+                      <li><a class="dropdown-item" href="#wheeloffortune">X. Wheel of Fortune</a></li>
+                      <li><a class="dropdown-item" href="#justice">XI. Justice</a></li>
+                      <li><a class="dropdown-item" href="#hangedman">XII. The Hanged Man</a></li>
+                      <li><a class="dropdown-item" href="#death">XIII. Death</a></li>
+                      <li><a class="dropdown-item" href="#temperance">XIV. Temperance</a></li>
+                      <li><a class="dropdown-item" href="#devil">XV. The Devil</a></li>
+                      <li><a class="dropdown-item" href="#tower">XVI. The Tower</a></li>
+                      <li><a class="dropdown-item" href="#star">XVII. The Star</a></li>
+                      <li><a class="dropdown-item" href="#moon">XVIII. The Moon</a></li>
+                      <li><a class="dropdown-item" href="#sun">XIX. The Sun</a></li>
+                      <li><a class="dropdown-item" href="#judgement">XX. Judgement</a></li>
+                      <li><a class="dropdown-item" href="#world">XXI. The World</a></li>
+                    </ul>
+                  </li> 
+                  <li class="nav-item" style="font-size: large;">&#10087;</li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#wands" role="button" data-bs-toggle="dropdown">Wands</a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#acewands">Ace of Wands</a></li>
+                      <li><a class="dropdown-item" href="#twowands">Two of Wands</a></li>
+                      <li><a class="dropdown-item" href="#threewands">Three of Wands</a></li>
+                      <li><a class="dropdown-item" href="#fourwands">Four of Wands</a></li>
+                      <li><a class="dropdown-item" href="#fivewands">Five of Wands</a></li>
+                      <li><a class="dropdown-item" href="#sixwands">Six of Wands</a></li>
+                      <li><a class="dropdown-item" href="#sevenwands">Seven of Wands</a></li>
+                      <li><a class="dropdown-item" href="#eightwands">Eight of Wands</a></li>
+                      <li><a class="dropdown-item" href="#ninewands">Nine of Wands</a></li>
+                      <li><a class="dropdown-item" href="#tenwands">Ten of Wands</a></li>
+                      <li><a class="dropdown-item" href="#pagewands">Page of Wands</a></li>
+                      <li><a class="dropdown-item" href="#knightwands">Knight of Wands</a></li>
+                      <li><a class="dropdown-item" href="#queenwands">Queen of Wands</a></li>
+                      <li><a class="dropdown-item" href="#kingwands">King of Wands</a></li>
+                    </ul>
+                  </li> 
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#cups" role="button" data-bs-toggle="dropdown">Cups</a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#acecups">Ace of Cups</a></li>
+                      <li><a class="dropdown-item" href="#twocups">Two of Cups</a></li>
+                      <li><a class="dropdown-item" href="#threecups">Three of Cups</a></li>
+                      <li><a class="dropdown-item" href="#fourcups">Four of Cups</a></li>
+                      <li><a class="dropdown-item" href="#fivecups">Five of Cups</a></li>
+                      <li><a class="dropdown-item" href="#sixcups">Six of Cups</a></li>
+                      <li><a class="dropdown-item" href="#sevencups">Seven of Cups</a></li>
+                      <li><a class="dropdown-item" href="#eightcups">Eight of Cups</a></li>
+                      <li><a class="dropdown-item" href="#ninecups">Nine of Cups</a></li>
+                      <li><a class="dropdown-item" href="#tencups">Ten of Cups</a></li>
+                      <li><a class="dropdown-item" href="#pagecups">Page of Cups</a></li>
+                      <li><a class="dropdown-item" href="#knightcups">Knight of Cups</a></li>
+                      <li><a class="dropdown-item" href="#queencups">Queen of Cups</a></li>
+                      <li><a class="dropdown-item" href="#kingcups">King of Cups</a></li>
+                    </ul>
+                  </li> 
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#swords" role="button" data-bs-toggle="dropdown">Swords</a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#aceswords">Ace of Swords</a></li>
+                      <li><a class="dropdown-item" href="#twoswords">Two of Swords</a></li>
+                      <li><a class="dropdown-item" href="#threeswords">Three of Swords</a></li>
+                      <li><a class="dropdown-item" href="#fourswords">Four of Swords</a></li>
+                      <li><a class="dropdown-item" href="#fiveswords">Five of Swords</a></li>
+                      <li><a class="dropdown-item" href="#sixswords">Six of Swords</a></li>
+                      <li><a class="dropdown-item" href="#sevenswords">Seven of Swords</a></li>
+                      <li><a class="dropdown-item" href="#eightswords">Eight of Swords</a></li>
+                      <li><a class="dropdown-item" href="#nineswords">Nine of Swords</a></li>
+                      <li><a class="dropdown-item" href="#tenswords">Ten of Swords</a></li>
+                      <li><a class="dropdown-item" href="#pageswords">Page of Swords</a></li>
+                      <li><a class="dropdown-item" href="#knightswords">Knight of Swords</a></li>
+                      <li><a class="dropdown-item" href="#queenswords">Queen of Swords</a></li>
+                      <li><a class="dropdown-item" href="#kingswords">King of Swords</a></li>
+                    </ul>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#pentacles" role="button" data-bs-toggle="dropdown">Pentacles</a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#acepents">Ace of Pentacles</a></li>
+                      <li><a class="dropdown-item" href="#twopents">Two of Pentacles</a></li>
+                      <li><a class="dropdown-item" href="#threepents">Three of Pentacles</a></li>
+                      <li><a class="dropdown-item" href="#fourpents">Four of Pentacles</a></li>
+                      <li><a class="dropdown-item" href="#fivepents">Five of Pentacles</a></li>
+                      <li><a class="dropdown-item" href="#sixpents">Six of Pentacles</a></li>
+                      <li><a class="dropdown-item" href="#sevenpents">Seven of Pentacles</a></li>
+                      <li><a class="dropdown-item" href="#eightpents">Eight of Pentacles</a></li>
+                      <li><a class="dropdown-item" href="#ninepents">Nine of Pentacles</a></li>
+                      <li><a class="dropdown-item" href="#tenpents">Ten of Pentacles</a></li>
+                      <li><a class="dropdown-item" href="#pagepents">Page of Pentacles</a></li>
+                      <li><a class="dropdown-item" href="#knightpents">Knight of Pentacles</a></li>
+                      <li><a class="dropdown-item" href="#queenpents">Queen of Pentacles</a></li>
+                      <li><a class="dropdown-item" href="#kingpents">King of Pentacles</a></li>
+                    </ul>
+                  </li> 
+                </ul>
+                <form role="search">
+                    <input  class="form-control" type="search" placeholder="Search" aria-label="Search"
+                    type="search" 
+                    oninput="liveSearch()" 
+                    id="searchbox" 
+                    >
+                </form>
+              </div>
+            </div>
+        </nav>
+        
+    <!--***************************************************************************************-->
+    <!--********************************** END NAVIGATION *************************************-->
+    <!--***************************************************************************************-->
+             
+<main style="padding: 130px 25px;">
+  <div id="card" style="display: flex; flex-wrap: wrap; padding-right: 20px; min-width: 300px; justify-content: center;"></div>
+</main>
+
+
+<script src="cards.js"></script>
+<script>
+
+  const tarotCards = JSON.parse(theTarot);
+  let text = '';
+  for (let i = 0; i < tarotCards.length; i++) {
+    text += '<div class="card cards" style="width:350px">';
+  text += '<div id="' + tarotCards[i].name + '" class="card-img-top" data-bs-toggle="modal" data-bs-target="#' + tarotCards[i].name + 'Modal">';
+  text += '<img src="' + tarotCards[i].img + '" style="width: 300px; height: 540px; margin:0;">';
+    text += '</div><div  class="card-body"><h4 class="card-title">' + tarotCards[i].title + '</h4><p>';
+
+
+  if(tarotCards[i].desc.length > 205) str = tarotCards[i].desc.substring(0,205);
+  text += str;
+  
+   text += '... <a style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#' + tarotCards[i].name + 'Modal">read more.</a><p hidden>' + tarotCards[i].desc + '</p></div>';
+
+
+   text += '</p></div>';
+
+} 
+document.getElementById("card").innerHTML = text;
+
+
+
+
+
+
+  </script>
+
+        <footer class="py-3 my-4">
+                <div class="container">
+                      <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                        <li class="nav-item"><a href="http://andreacrofoot.name" class="nav-link px-2 text-muted">WebDeveloper's Site</a></li>
+                      </ul>
+                      <p class="text-center text-muted">&copy; 2023</p>
+                  </div>
+        </footer>
+
+       
+
+        <div id="modal"></div>
+        <script>
+        text = "";
+        for (let i = 0; i < tarotCards.length; i++) {
+        
+        
+        
+          text += '<div class="modal" id="' + tarotCards[i].name + 'Modal"><div class="modal-dialog"><div class="modal-content">';
+          text += '<div class="modal-header"><h4 class="modal-title">' + tarotCards[i].title + '</h4><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>';
+          text += '<div class="modal-body"><p>' + tarotCards[i].desc + '</p></div>';
+          text += '<div class="modal-footer"> <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button></div></div></div></div>';
+        
+        } 
+        document.getElementById("modal").innerHTML = text;
+      </script>
+        
+                <!-- JavaScript code for scrollspy on same row -->
+                <script>
+  
+                    /* Code for changing active 
+                    link on clicking */
+                    var btns = 
+                        $("#navigation .navbar-nav .nav-link");
+          
+                    for (var i = 0; i < btns.length; i++) {
+                        btns[i].addEventListener("click",
+                                              function () {
+                            var current = document
+                                .getElementsByClassName("active");
+          
+                            current[0].className = current[0]
+                                .className.replace(" active", "");
+          
+                            this.className += " active";
+                        });
+                    }
+          
+                </script>
+    </body>
+</html>
+  
